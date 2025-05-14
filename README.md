@@ -30,10 +30,18 @@ To view the wheels since they are continous/ rotating, run the joint_state_publi
 ros2 run joint_state_publisher_gui joint_state_publisher_gui 
 
 XACROS:
-
 - robot.urdf: brings all xacro/ urdf's together as one.
 - robot_core: defines the components of the robot and the component's coordinate frames.
 
 Notes:
 - Joints come first, and are the coordiante frames.
 - Links come next, and are the associated material in the model.
+
+
+## Launching Gazebo Simulation:
+  If you have no gazebo installed: 
+- sudo apt install ros-humble-gazebo-ros-pkgs
+
+- ros2 launch my_bot rsp.launch.py use_sim_time:=true
+In another terminal:
+- ros2 launch gazebo_ros gazebo.launch
