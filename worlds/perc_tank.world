@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="water_tank">
+
+    <!-- Manually defined sunlight (fix for model://sun not found) -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+
+    <!-- Tank floor (26ft diameter = 7.9248m) -->
+    <model name="tank_floor">
+      <static>true</static>
+      <link name="floor_link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>3.9624</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>3.9624</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.1 0.1 0.1 1</ambient>
+            <diffuse>0.3 0.3 0.3 1</diffuse>
+          </material>
+        </visual>
+        <pose>0 0 -0.05 0 0 0</pose>
+      </link>
+    </model>
+
+    <!-- Transparent cylindrical tank walls -->
+    <model name="cylinder_tank">
+      <static>true</static>
+      <link name="tank_link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>3.9624</radius>
+              <length>4.572</length> <!-- 15 feet deep -->
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>3.9624</radius>
+              <length>4.572</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.0 0.2 0.5 0.3</ambient>
+            <diffuse>0.1 0.4 0.7 0.3</diffuse>
+          </material>
+        </visual>
+        <pose>0 0 2.286 0 0 0</pose> <!-- Raise to center visually -->
+      </link>
+    </model>
+
+    <!-- Fog for underwater murkiness -->
+    <scene>
+      <ambient>0.05 0.1 0.3 1</ambient>
+      <fog>
+        <type>linear</type>
+        <color>0.0 0.1 0.3 1</color>
+        <start>0.1</start>
+        <end>10</end>
+      </fog>
+    </scene>
+
+  </world>
+</sdf>
